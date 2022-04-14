@@ -26,6 +26,9 @@ def clasifier(text):
     prediction=model.predict(input)
     pred='{0:.{1}f}'.format(prediction[0][0], 2)
     return (pred)
+@st.cache
+def convert_df(df):
+    return df.to_csv().encode('utf-8')
 
 def run_twitter():
     st.title('Twitter')
@@ -39,7 +42,9 @@ def run_twitter():
         tweet_list = [i.text for i in tweets]
         p = [i for i in classifier(tweet_list)]
         q=[p[i]['label'] for i in range(len(p))]
-        df = pd.DataFrame(list(zip(tweet_list, q)),columns =['Tweets', 'sentiment'])
+        r=[p[i]['score'] for i in range(len(p))]
+
+        df = pd.DataFrame(list(zip(tweet_list, q,r)),columns =['Tweets', 'sentiment','accuracy'])
         st.write(df)
         
         title_type = df.groupby('sentiment').agg('count')
@@ -72,6 +77,20 @@ def run_twitter():
         plt.axis("off")
         plt.show()
         st.pyplot()
+        
+      
+
+
+        csv = convert_df(df)
+
+        st.download_button(
+        "Press to Download",
+        csv,
+        "file.csv",
+        "text/csv",
+        key='download-csv'
+        )
+        
         
 if __name__=='__main__':
     activities=['TWITTER','AMAZON','YOUTUBE']
