@@ -91,7 +91,33 @@ def run_twitter():
         key='download-csv'
         )
         
-        
+def run_youtube():
+    data=st.file_uploader("upload a file")
+    if data is not  None:
+        df=pd.read_csv(data)
+        df['polarity'].replace(
+        to_replace=['Neutral'],
+        value='Negative',
+        inplace=True
+    )
+        df.drop('subjectivity',
+        axis='columns', inplace=True)
+        st.write(df)
+        title_type = df.groupby('polarity').agg('count')
+        piechart=df.polarity.value_counts().plot(kind='pie',autopct="%1.0f%%")
+        st.write(piechart)
+        st.pyplot()
+
+        histogram=plt.hist(df['sentiment_type'], bins = 5)
+        plt.xlabel('sentiment_score')
+        st.write(histogram)
+        st.pyplot()
+
+
+
+
+
+
 if __name__=='__main__':
     activities=['TWITTER','AMAZON','YOUTUBE']
     option=st.sidebar.selectbox('Selection option:',activities)
@@ -100,4 +126,4 @@ if __name__=='__main__':
     if option=='AMAZON':
         st.write("amazon")
     if option=='YOUTUBE':
-        st.write("youtube")
+        run_youtube()
