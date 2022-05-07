@@ -22,5 +22,6 @@ tn, fp, fn, tp = confusion_matrix(y_test, y_pred_lr).ravel()
 #True positive and true negative rates
 tpr_lr = round(tp/(tp + fn), 4)
 tnr_lr = round(tn/(tn+fp), 4)
+print(lr)
 # df = pd.DataFrame(list(zip(tweet_list, q)),columns =['Tweets', 'sentiment'])
 pickle.dump(lr,open('model.pkl','wb'))

@@ -1,4 +1,4 @@
-comment,polarity,sentiment_type,subjectivity
+comment,polarity,Precision,subjectivity
 Is the price worth it for you?,Positive,0.3,0.1
 "It has always seemed absurd to me selling the keyboard separately. I can’t imagine anyone using it purely as a tablet. Like I understand selling the pen separately (and keyboard for iPads) as not everyone will be using one and seems more of an optional extra, but keyboard seems like a necessity for surface pro.",Positive,0.053571428571428575,0.525
 "I really appreciate Monica's breakdown of everything here. It's the kind of review that I'd share with a relative if they asked about buying the surface pro, and I wouldn't have to worry about explaining anything else. I love it!",Positive,0.35625,0.42500000000000004
